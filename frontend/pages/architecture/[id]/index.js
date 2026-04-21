@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import Layout from '../../../components/Layout.js''
+import Layout from '../../../components/Layout.js'
 import QuoteView from '../../../components/QuoteView.js'
 import { getQuote } from '../../../lib/api.js'
 
