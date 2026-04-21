@@ -17,7 +17,7 @@ export default function CivilIndex() {
       setLoading(true)
       const data = await listQuotes('civil')
       setQuotes(data)
-    } catch { router.push('/login') }
+    } catch(() => {})
     finally { setLoading(false) }
   }
 
