@@ -12,7 +12,10 @@ export default function ArchitectureQuoteDetail() {
 
   useEffect(() => {
     if (!id) return
-    getQuote(id).then(setQuote).catch(() => router.push('/login')).finally(() => setLoading(false))
+    getQuote(id)
+  .then(setQuote)
+  .catch(() => setQuote(null))
+  .finally(() => setLoading(false))
   }, [id])
 
   if (loading) return <Layout><div className="text-center py-20 text-gray-400">불러오는 중...</div></Layout>
