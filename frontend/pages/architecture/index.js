@@ -17,7 +17,7 @@ export default function ArchitectureIndex() {
       setLoading(true)
       const data = await listQuotes('architecture')
       setQuotes(data)
-    } catch { router.push('/login') }
+    } catch(() => {})
     finally { setLoading(false) }
   }
 
