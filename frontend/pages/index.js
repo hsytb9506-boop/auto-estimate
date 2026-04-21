@@ -5,12 +5,7 @@ import Head from 'next/head'
 export default function Home() {
   const router = useRouter()
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const token = localStorage.getItem('token')
-      if (!token) router.push('/login')
-    }
-  }, [])
+
 
   return (
     <>
