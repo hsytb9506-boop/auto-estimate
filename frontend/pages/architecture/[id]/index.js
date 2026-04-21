@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import Layout from '../../components/Layout'
 import QuoteView from '../../../components/QuoteView'
-import { getQuote } from '../../lib/api'
+import { getQuote } from '../../../lib/api'
 
 export default function ArchitectureQuoteDetail() {
   const router = useRouter()
