@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import Layout from '../../components/Layout'
+import Layout from '../../../components/Layout.js'
 import { listQuotes, deleteQuote } from '../../lib/api'
 
 const fmt = (n) => Math.round(n || 0).toLocaleString()
