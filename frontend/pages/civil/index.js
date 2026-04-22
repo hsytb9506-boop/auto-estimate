@@ -24,7 +24,7 @@ export default function CivilIndex() {
   useEffect(() => { load() }, [])
 
   const handleDelete = async (id, name) => {
-    if (!confirm(`"${name}" 견적을 삭제하시겠습니까?`)) return
+    if (!confirm(name + " - 견적을 삭제하시겠습니까?")) return
     await deleteQuote(id)
     setQuotes(q => q.filter(x => x.id !== id))
   }
