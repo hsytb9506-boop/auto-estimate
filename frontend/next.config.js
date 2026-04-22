@@ -5,11 +5,10 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'https://lucid-joy-production.up.railway.app/api/:path*',
+        destination: 'https://auto-estimate-production.up.railway.app/api/:path*',
       },
     ]
   },
 }
 
 module.exports = nextConfig
-
