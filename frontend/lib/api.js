@@ -1,6 +1,8 @@
 import axios from 'axios'
 
-const api = axios.create({ baseURL: '/api' })
+const api = axios.create({
+  baseURL: 'https://auto-estimate-production.up.railway.app/api',
+})
 
 // 요청마다 토큰 자동 첨부
 api.interceptors.request.use((config) => {
