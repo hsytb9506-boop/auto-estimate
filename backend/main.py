@@ -277,7 +277,7 @@ def update_percentage(pct_id: int, data: schemas.PercentUpdate,
 # ─────────────────────────────────────────
 @app.get("/api/quotes")
 def list_quotes(domain: str = Query(...), db: Session = Depends(get_db),
-                user: models.User = Depends(require_user)):
+                
     dom = db.query(models.Domain).filter(models.Domain.code == domain).first()
     if not dom:
         raise HTTPException(404)
@@ -298,7 +298,7 @@ def list_quotes(domain: str = Query(...), db: Session = Depends(get_db),
 
 @app.get("/api/quotes/{quote_id}", response_model=schemas.QuoteOut)
 def get_quote(quote_id: int, db: Session = Depends(get_db),
-              user: models.User = Depends(require_user)):
+              
     q = db.query(models.Quote).get(quote_id)
     if not q:
         raise HTTPException(404)
@@ -306,7 +306,7 @@ def get_quote(quote_id: int, db: Session = Depends(get_db),
 
 @app.post("/api/quotes", response_model=schemas.QuoteOut)
 def create_quote(data: schemas.QuoteCreate, db: Session = Depends(get_db),
-                 user: models.User = Depends(require_user)):
+                
     # 견적번호 자동 생성
     count = db.query(models.Quote).count() + 1
     qnum = f"EST-{datetime.now().strftime('%Y%m')}-{count:04d}"
@@ -325,7 +325,7 @@ def create_quote(data: schemas.QuoteCreate, db: Session = Depends(get_db),
         profit_pct=data.profit_pct,
         tax_pct=data.tax_pct,
         note=data.note,
-        created_by=user.username,
+        created_by="local",
     )
     db.add(q); db.flush()
     for idx, item in enumerate(data.items):
@@ -340,7 +340,7 @@ def create_quote(data: schemas.QuoteCreate, db: Session = Depends(get_db),
 @app.put("/api/quotes/{quote_id}", response_model=schemas.QuoteOut)
 def update_quote(quote_id: int, data: schemas.QuoteCreate,
                  db: Session = Depends(get_db),
-                 user: models.User = Depends(require_user)):
+                 
     q = db.query(models.Quote).get(quote_id)
     if not q:
         raise HTTPException(404)
@@ -358,7 +358,7 @@ def update_quote(quote_id: int, data: schemas.QuoteCreate,
 
 @app.delete("/api/quotes/{quote_id}")
 def delete_quote(quote_id: int, db: Session = Depends(get_db),
-                 user: models.User = Depends(require_user)):
+                 
     q = db.query(models.Quote).get(quote_id)
     if not q:
         raise HTTPException(404)
