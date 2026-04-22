@@ -14,12 +14,15 @@ export default function CivilIndex() {
 
   const load = async () => {
     try {
-      setLoading(true)
-      const data = await listQuotes('civil')
-      setQuotes(data)
-    } catch(() => {})
-    finally { setLoading(false) }
-  }
+  setLoading(true)
+  const data = await listQuotes('civil')
+  setQuotes(data)
+} catch (e) {
+setQuotes([])
+}
+finally {
+setLoading(false)
+}
 
   useEffect(() => { load() }, [])
 
