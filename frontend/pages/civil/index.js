@@ -112,7 +112,8 @@ setLoading(false)
               </tbody>
             </table>
           </div>
-        </div>
+       </div>
       )}
     </Layout>
-)
+  )
+}
