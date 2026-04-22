@@ -14,12 +14,14 @@ export default function ArchitectureIndex() {
 
   const load = async () => {
     try {
-      setLoading(true)
-      const data = await listQuotes('architecture')
-      setQuotes(data)
-    } catch(() => {})
-    finally { setLoading(false) }
-  }
+  setLoading(true)
+  const data = await listQuotes('architecture')
+  setQuotes(data)
+} catch (e) {
+  setQuotes([])
+} finally {
+  setLoading(false)
+}
 
   useEffect(() => { load() }, [])
 
@@ -113,5 +115,6 @@ export default function ArchitectureIndex() {
         </div>
       )}
     </Layout>
-  )
+)
+}
 }
