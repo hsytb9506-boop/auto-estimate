@@ -109,5 +109,5 @@ setLoading(false)
       </table>
     </div>
 </Layout>
-);
+)
 }
