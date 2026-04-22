@@ -115,5 +115,4 @@ setLoading(false)
         </div>
       )}
     </Layout>
-  )
-}
+)
