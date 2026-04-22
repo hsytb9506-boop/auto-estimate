@@ -52,7 +52,14 @@ export default function CivilIndex() {
           placeholder="현장명, 거래처, 공사명 등 검색..."
           className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
         />
-      </div>
+      
+  <Link
+  href="/civil/new"
+  className="inline-flex items-center justify-center rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700"
+>
+  새 견적 작성
+  </Link>
+</div>
 
       {loading ? (
         <div className="text-center py-12 text-gray-400">불러오는 중...</div>
