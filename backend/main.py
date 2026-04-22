@@ -276,14 +276,15 @@ def update_percentage(pct_id: int, data: schemas.PercentUpdate,
 # QUOTES
 # ─────────────────────────────────────────
 @app.get("/api/quotes")
-def list_quotes(domain: str = Query(...), db: Session = Depends(get_db),
-                
+def list_quotes(domain: str = Query(...), db: Session = Depends(get_db)):
     dom = db.query(models.Domain).filter(models.Domain.code == domain).first()
     if not dom:
         raise HTTPException(404)
+
     quotes = (db.query(models.Quote)
               .filter(models.Quote.domain_id == dom.id)
               .order_by(models.Quote.created_at.desc()).all())
+
     result = []
     for q in quotes:
         mat = sum(i.amount for i in q.items)
@@ -297,7 +298,7 @@ def list_quotes(domain: str = Query(...), db: Session = Depends(get_db),
     return result
 
 @app.get("/api/quotes/{quote_id}", response_model=schemas.QuoteOut)
-def get_quote(quote_id: int, db: Session = Depends(get_db),
+def get_quote(quote_id: int, db: Session = Depends(get_db)):
               
     q = db.query(models.Quote).get(quote_id)
     if not q:
@@ -305,7 +306,7 @@ def get_quote(quote_id: int, db: Session = Depends(get_db),
     return q
 
 @app.post("/api/quotes", response_model=schemas.QuoteOut)
-def create_quote(data: schemas.QuoteCreate, db: Session = Depends(get_db),
+def create_quote(data: schemas.QuoteCreate, db: Session = Depends(get_db)):
                 
     # 견적번호 자동 생성
     count = db.query(models.Quote).count() + 1
@@ -339,7 +340,7 @@ def create_quote(data: schemas.QuoteCreate, db: Session = Depends(get_db),
 
 @app.put("/api/quotes/{quote_id}", response_model=schemas.QuoteOut)
 def update_quote(quote_id: int, data: schemas.QuoteCreate,
-                 db: Session = Depends(get_db),
+                 db: Session = Depends(get_db)):
                  
     q = db.query(models.Quote).get(quote_id)
     if not q:
@@ -357,7 +358,7 @@ def update_quote(quote_id: int, data: schemas.QuoteCreate,
     return q
 
 @app.delete("/api/quotes/{quote_id}")
-def delete_quote(quote_id: int, db: Session = Depends(get_db),
+def delete_quote(quote_id: int, db: Session = Depends(get_db)):
                  
     q = db.query(models.Quote).get(quote_id)
     if not q:
